@@ -1,0 +1,84 @@
+-- Database: urssaf
+
+-- DROP DATABASE urssaf;
+
+CREATE DATABASE urssaf
+  WITH OWNER = urssaf
+       ENCODING = 'UTF8'
+       TABLESPACE = pg_default
+       LC_COLLATE = 'French_France.1252'
+       LC_CTYPE = 'French_France.1252'
+       CONNECTION LIMIT = -1;
+
+-- Role: urssaf
+
+-- DROP ROLE urssaf;
+
+CREATE ROLE urssaf LOGIN
+  ENCRYPTED PASSWORD 'urssaf'
+  NOSUPERUSER INHERIT CREATEDB NOCREATEROLE NOREPLICATION;
+
+-- Table: decla_02
+
+-- DROP TABLE decla_02;
+
+CREATE TABLE decla_02
+(
+  vir_treso character varying(1),
+  occasionnel character varying(1),
+  reference character varying(16),
+  transaction character varying(4),
+  payeur character varying(8),
+  tiers character varying(10),
+  devise character varying(3),
+  montant integer,
+  date_ope date NOT NULL,
+  mode_maj character varying(1),
+  compte_debiter character varying(10),
+  code_budget character varying(4),
+  motif character varying(35),
+  texte_libre character varying(70) NOT NULL,
+  donneur_ordre character varying(8),
+  mode_regl character varying(3),
+  CONSTRAINT pk_paiement PRIMARY KEY (texte_libre, date_ope)
+)
+WITH (
+  OIDS=TRUE
+);
+ALTER TABLE decla_02
+  OWNER TO urssaf;
+GRANT ALL ON TABLE decla_02 TO urssaf;
+GRANT ALL ON TABLE decla_02 TO public;
+
+  
+-- Table: modele_02
+
+-- DROP TABLE modele_02;
+
+CREATE TABLE modele_02
+(
+  vir_treso character varying(1),
+  occasionnel character varying(1),
+  reference character varying(16),
+  transaction character varying(4),
+  payeur character varying(8),
+  tiers character varying(10),
+  devise character varying(3),
+  mode_maj character varying(1),
+  compte_debiter character varying(10),
+  code_budget character varying(4),
+  motif1 character varying(4),
+  motif3 character varying(14),
+  texte_libre character varying(70) NOT NULL,
+  donneur_ordre character varying(8),
+  mode_regl character varying(3),
+  CONSTRAINT pk_mag PRIMARY KEY (texte_libre)
+)
+WITH (
+  OIDS=TRUE
+);
+ALTER TABLE modele_02
+  OWNER TO urssaf;
+GRANT ALL ON TABLE modele_02 TO urssaf;
+GRANT ALL ON TABLE modele_02 TO public;
+  

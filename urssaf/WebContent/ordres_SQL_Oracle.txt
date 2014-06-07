@@ -1,0 +1,81 @@
+insert into decla_02 
+select VIR_TRESO,OCCASIONNEL,REFERENCE,TRANSACTION,PAYEUR,TIERS,DEVISE,0 MONTANT,
+to_date('15042014','ddmmyyyy') ,--DATE_OPE le 15 du mois courant,
+MODE_MAJ,COMPTE_DEBITER,CODE_BUDGET,
+MOTIF1|| '201412' ||MOTIF3,          -- Année mois du trimestre
+TEXTE_LIBRE,DONNEUR_ORDRE,MODE_REGL 
+from  treso.modele_02  where tiers='URSSAF'
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- Pour SAISIR les MONTANTS
+SELECT t.texte_libre,t.tiers,t.montant FROM treso.decla_02 t
+where t.date_ope = to_date('15042014','ddmmyyyy') --DATE_OPE le 15 du mois courant
+order by 1 asc,2 desc
+for update
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- Pour vérifier les sommes
+select sum (t.montant),t.tiers FROM decla_02 t
+where t.date_ope = to_date('15042014','ddmmyyyy') --DATE_OPE le 15 du mois courant
+group by t.tiers
+
+SELECT t.texte_libre,t.tiers,t.montant FROM treso.decla_02 t
+where t.date_ope = to_date('15042014','ddmmyyyy') --DATE_OPE le 15 du mois courant
+order by 3
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+--Pour faire le fichier
+SELECT vir_treso || occasionnel || rpad(reference, 16) || transaction ||
+      rpad(payeur, 8) || rpad(tiers, 10) || rpad(' ', 8) || rpad(devise, 3)
+      || to_char(montant, '9999999999999999.99') || to_char(date_ope,
+      'ddmmyyyy') || mode_maj || rpad(' ', 3) || rpad(compte_debiter, 10) ||
+      rpad(' ', 8) || code_budget || rpad(motif, 35) || rpad(' ', 105) ||
+      rpad(texte_libre, 70) || rpad(' ', 678) || rpad(donneur_ordre, 8) ||
+      rpad(' ', 39) || '000' || mode_regl, decla_02.ROWID
+    FROM decla_02
+    WHERE date_ope = to_date('15042014', 'ddmmyyyy') --DATE_OPE le 15 du mois courant
+           and montant > 0
+    ORDER BY payeur, tiers
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-- Pour modifier les compters bancaires ou inserrer un nouveau magasin
+
+select * from treso.modele_02 aa where aa.compte_debiter like 'CAVMG208' for update
+
+update treso.modele_02 aa set aa.transaction ='VDSC'
+
+
+create table DECLA_02
+(
+  VIR_TRESO      VARCHAR2(1),
+  OCCASIONNEL    VARCHAR2(1),
+  REFERENCE      VARCHAR2(16),
+  TRANSACTION    VARCHAR2(4),
+  PAYEUR         VARCHAR2(8),
+  TIERS          VARCHAR2(10),
+  DEVISE         VARCHAR2(3),
+  MONTANT        NUMBER,
+  DATE_OPE       DATE,
+  MODE_MAJ       VARCHAR2(1),
+  COMPTE_DEBITER VARCHAR2(10),
+  CODE_BUDGET    VARCHAR2(4),
+  MOTIF          VARCHAR2(35),
+  TEXTE_LIBRE    VARCHAR2(70),
+  DONNEUR_ORDRE  VARCHAR2(8),
+  MODE_REGL      VARCHAR2(3)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 128K
+    next 128K
+    minextents 1
+    maxextents unlimited
+  );
