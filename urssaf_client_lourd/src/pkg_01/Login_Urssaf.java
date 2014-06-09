@@ -3,6 +3,7 @@ package pkg_01;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 import org.eclipse.jface.action.StatusLineManager;
@@ -48,6 +49,28 @@ public class Login_Urssaf extends ApplicationWindow {
 					System.out.println("Click Login");
 					String username=text.getText();
 					String password=text_1.getText() ;
+//
+			    	Properties p = new Properties();
+			    	String fini="c:/jardiland/urssaf/urssaf.cfg";
+
+					String[] args1 = new String[13];
+					args1[0] = fini;
+					args1[1] = p.getProperty("fichier_excel");
+					args1[2] = p.getProperty("fichier_xrt");
+					args1[3] = p.getProperty("onglet");
+					args1[4] = p.getProperty("premiere_ligne");
+					args1[5] = p.getProperty("derniere_ligne");
+					args1[6] = p.getProperty("colonne_magasin");
+					args1[7] = p.getProperty("colonne_montant");
+					args1[8] = p.getProperty("colonne_yyyytm");
+					args1[9] = p.getProperty("colonne_tiers");
+					args1[10] = p.getProperty("colonne_ref1");
+					args1[11] = p.getProperty("colonne_ref2");
+					args1[12] = p.getProperty("url_bdd");
+					
+					InputStream fileConfig = ParamUrssaf.class.getResourceAsStream("urssaf.cfg");
+					
+					
 			   		String[] args = {
 			   				"jdbc:postgresql://127.0.0.1:5432/urssaf",
 			   				username,password 
@@ -55,33 +78,14 @@ public class Login_Urssaf extends ApplicationWindow {
 					if ( ConnPostgres.check_conn(args) == 0 ){
 						System.out.println("Ouverture de ParamUrssaf");
 						w1.close();
-				    	Properties p = new Properties();
-				    	String fini="C:/wk_kepler/urssaf/WebContent/urssaf.cfg";
 				        
 							try {
 								p.load(new FileInputStream (fini));
 							} catch (FileNotFoundException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							} catch (IOException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-
-						String[] args1 = new String[12];
-						args1[0] = fini;
-						args1[1] = p.getProperty("fichier_excel");
-						args1[2] = p.getProperty("fichier_xrt");
-						args1[3] = p.getProperty("onglet");
-						args1[4] = p.getProperty("premiere_ligne");
-						args1[5] = p.getProperty("derniere_ligne");
-						args1[6] = p.getProperty("colonne_magasin");
-						args1[7] = p.getProperty("colonne_montant");
-						args1[8] = p.getProperty("colonne_yyyytm");
-						args1[9] = p.getProperty("colonne_tiers");
-						args1[10] = p.getProperty("colonne_ref1");
-						args1[11] = p.getProperty("colonne_ref2");
-
 						ParamUrssaf.main(args1);
 					};
 				}
