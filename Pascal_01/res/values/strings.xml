@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Pascal_01</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name" translatable="false">Pascal_01</string>
+    <string name="title_section1" translatable="false">Section 1</string>
+    <string name="title_section2" translatable="false">Section 2</string>
+    <string name="title_section3" translatable="false">Section 3</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="apropos" translatable="false">A propos</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="title_activity_apropos" translatable="false">A propos</string>
+    <string name="auteur_prenom" translatable="false">Pascal</string>
+    <string name="auteur_nom" translatable="false">AUCLAIR</string>
+    <string name="BP_ok" translatable="false">OK</string>
+    <string name="horloge" translatable="false">Horloge</string>
+    <string name="calendrier" translatable="false">Calendrier</string>
+    <string name="poweredby" translatable="false">Powered by Eclipse Kepler</string>
+    <string name="title_activity_horloges" translatable="false">Horloges</string>
+    <string name="title_activity_calendrier" translatable="false">Calendrier</string>
+    <string name="DigitalClock" translatable="false">DigitalClock</string>
+    <string name="Enregistrer" translatable="false">Enregistrer</string>
+    <string name="title_activity_camera" translatable="false">Caméra</string>
+    <string name="camera" translatable="false">Caméra</string>
+    <string name="tap" translatable="false">Tap the image to open the camera!!</string>
+    <string name="title_activity_display_message">DisplayMessageActivity</string>
+    <string name="entrervotrenom">entrer votre nom</string>
+    <string name="Send">Send</string>
 
 </resources>

@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="19" />
 
     <application
@@ -21,6 +21,30 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="pascal.auclair.pascal_01.Apropos"
+            android:label="@string/title_activity_apropos" >
+        </activity>
+        <activity
+            android:name="pascal.auclair.pascal_01.Horloges"
+            android:label="@string/title_activity_horloges" >
+        </activity>
+        <activity
+            android:name="pascal.auclair.pascal_01.Calendrier"
+            android:label="@string/title_activity_calendrier" >
+        </activity>
+        <activity
+            android:name="pascal.auclair.pascal_01.Camera"
+            android:label="@string/title_activity_camera" >
+        </activity>
+        <activity
+            android:name="pascal.auclair.pascal_01.DisplayMessageActivity"
+            android:label="@string/title_activity_display_message"
+            android:parentActivityName="www.pascal.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.pascal.MainActivity" />
         </activity>
     </application>
 
