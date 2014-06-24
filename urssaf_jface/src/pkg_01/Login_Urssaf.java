@@ -14,6 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
@@ -61,7 +62,7 @@ public class Login_Urssaf extends ApplicationWindow {
 						e1.printStackTrace();
 					}
 
-					String[] args1 = new String[13];
+					String[] args1 = new String[15];
 					args1[0] = fini;
 					args1[1] = p.getProperty("fichier_excel");
 					args1[2] = p.getProperty("fichier_xrt");
@@ -85,6 +86,7 @@ public class Login_Urssaf extends ApplicationWindow {
 			   				};
 					if ( ConnPostgres.check_conn(args) == 0 ){
 						System.out.println("Ouverture de ParamUrssaf");
+						Display.getCurrent().dispose();
 						w1.close();
 				        
 

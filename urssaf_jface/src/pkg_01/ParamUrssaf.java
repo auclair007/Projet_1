@@ -1,5 +1,13 @@
 package pkg_01;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.eclipse.jface.action.StatusLineManager;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -17,7 +25,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import paUtils.Fileini;
 
 public class ParamUrssaf extends ApplicationWindow {
-
+	private static ParamUrssaf w1;
 	private Text text_0;
 	private Text text_1;
 	private Text text_2;
@@ -198,7 +206,105 @@ public class ParamUrssaf extends ApplicationWindow {
 		Button btnVrifierLeFichier = new Button(container, SWT.NONE);
 		btnVrifierLeFichier.setText("V\u00E9rifier le fichier Excel");
 		btnVrifierLeFichier.setBounds(161, 320, 131, 25);
+		btnVrifierLeFichier.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent ee) {
+				System.out.println("Click btnVrifierLeFichier");
+////////////////////////////////////////////////////////////////////////////
+		        File f = new File(args1[1]);
+		        if( ! f.exists()){
+		        	System.out.println("File NOT existed -->" + args1[1]);
+		  		  }else{
+		  			int ligne=0;
+				    String pdv ;
+				    long montant=(long) 0;
+				    String tiers ;
+				    String ref1 ;
+				    long ref2=(long) 0 ;
+			        String liste = "";
+				    long mois=(long) 0;
+				    long total=(long) 0; 
+				    
+					String[] magArray;
+					long[] euroArray;
+					String[] tiersArray;
+					String[] ref1Array;
+					long[] ref2Array;
+			        magArray = new String[150];
+			        euroArray = new long[150];
+			        tiersArray = new String[150];
+			        ref1Array = new String[150];
+			        ref2Array = new long[150];
+//
+			        System.out.println("0 " +args1[0]);		        
+			        System.out.println("1 " +args1[1]);		        
+			        System.out.println("2 " +args1[2]);		        
+			        System.out.println("3 " +args1[3]);		        
+			        System.out.println("4 " +args1[4]);		        
+			        System.out.println("5 " +args1[5]);		        
+			        System.out.println("6 " +args1[6]);		        
+			        System.out.println("7 " +args1[7]);		        
+			        System.out.println("8 " +args1[8]);		        
+			        System.out.println("9 " +args1[9]);		        
+			        System.out.println("10 " +args1[10]);		        
+			        System.out.println("11 " +args1[11]);		        
+//			        
+			        Workbook wb = null;
+					try {
+						wb = WorkbookFactory.create(new File(args1[1]));
+					} catch (InvalidFormatException | IOException e) {
+						System.out.println("fichier excel -->" +args1[1]);
+						e.printStackTrace();
+					}
+					Sheet onglet = wb.getSheet(args1[3]);
+					int ii = 0;
 
+					for (ligne = Integer.parseInt(args1[4])-1 ; ligne <= Integer.parseInt(args1[5])-1; ligne++) 
+					{
+					    // recuperation de chaque ligne
+					    Row row = onglet.getRow(ligne);
+
+						pdv = row.getCell(Integer.parseInt(args1[6])-1)!=null?row.getCell(Integer.parseInt(args1[6])-1).getStringCellValue():"?";
+						mois = (long) (row.getCell(Integer.parseInt(args1[8])-1)!=null?row.getCell(Integer.parseInt(args1[8])-1).getNumericCellValue():0);
+						montant = (long) (row.getCell(Integer.parseInt(args1[7])-1)!=null?row.getCell(Integer.parseInt(args1[7])-1).getNumericCellValue():0);
+						tiers   = row.getCell(Integer.parseInt(args1[9])-1)!=null?row.getCell(Integer.parseInt(args1[9])-1).getStringCellValue():"?";
+						ref1    = row.getCell(Integer.parseInt(args1[10])-1)!=null?row.getCell(Integer.parseInt(args1[10])-1).getStringCellValue():"?";
+						ref2    = (long) (row.getCell(Integer.parseInt(args1[11])-1)!=null?row.getCell(Integer.parseInt(args1[11])-1).getNumericCellValue():0);
+		//			    System.out.println(ligne + " " +pdv + " " + montant );
+					    total = total + montant;
+					    liste = liste + "<li>" + pdv + " --> " + montant + "</li>";
+					    magArray[ii] = pdv;
+					    euroArray[ii] = montant;
+					    tiersArray[ii] = tiers;
+					    ref1Array[ii] = ref1;
+					    ref2Array[ii] = ref2;
+					    ii++;
+					}
+		  		  
+					System.out.println("Tiers "+tiersArray[0]);
+					System.out.println("Ref1 "+ref1Array[0]);
+					System.out.println("Ref2 "+ref2Array[0]);
+					System.out.println(ligne+ " "+ mois);
+		        	System.out.println("Fichier traiter --> " + args1[1] );
+					int nbr = wb.getNumberOfSheets();
+					System.out.println("Nrb de sheets --> " + nbr);
+					System.out.println("Onglet actif --> " + args1[3] );
+					nbr = onglet.getLastRowNum();
+					System.out.println("Nrb de lignes --> " + nbr);
+					System.out.println("Total Euro --> " + total);
+		  		  
+/////////////////////////////////////////////////////////////////////////////////////
+					Display.getCurrent().dispose();
+					w1.close();
+					args1[13]= Long.toString(mois) ;
+					args1[14]= Long.toString(total)  ;
+					
+					VerifExcel.main(args1);
+				
+		  		  }
+			}
+		});
+		
 		System.out.println("protected Control createContents(Composite parent)");
 		return container;
 	}
@@ -236,12 +342,12 @@ public class ParamUrssaf extends ApplicationWindow {
 			args1=args.clone();
 			
 			System.out.println("public static void main( String[] args )");
-			ParamUrssaf window = new ParamUrssaf();
-			window.setBlockOnOpen(true);
+			w1 = new ParamUrssaf();
+			w1.setBlockOnOpen(true);
 			System.out.println("window.open() start");
-			window.open();
+			w1.open();
 			System.out.println("window.open() end");
-			Display.getCurrent().dispose();
+//			Display.getCurrent().dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -263,7 +369,6 @@ public class ParamUrssaf extends ApplicationWindow {
 	 */
 	@Override
 	protected Point getInitialSize() {
-		
 		return new Point(450, 467);
 	}
 }
