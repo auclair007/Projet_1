@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+     <string name="hello">Hello World, TutoFragmentsActivity!</string>
+    <string name="app_name">Pascal_02</string>
+    <string name="prenom">Pascal</string>
+    <string name="nom">AUCLAIR</string>
+    <string name="adresse">3 avenue Quesnay</string>
+    <string name="ville">Livry-Gargan</string>
+    <string name="codepostal">93190</string>
+    <string name="tel">+33609597749</string>
+    <string name="mail">pa.auclair@gmail.com</string>
+    <string name="next">></string>
+    <string name="EntrerNumeroTel">Numéro de Téléphone</string>
+    <string name="EnvoyerleSms">Envoyer le Sms</string>
+    <string name="newsms">taper votre sms</string>
+    <string name="phonenumber">phonenumber</string>
+    <string name="message">message</string>    
+    <string name="pays">France</string>
+    <string name="powered">Powered by Eclipse Kepler</string>
+</resources>
