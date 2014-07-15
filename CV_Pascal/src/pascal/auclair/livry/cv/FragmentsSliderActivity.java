@@ -49,6 +49,7 @@ public class FragmentsSliderActivity extends FragmentActivity {
 		fragments.add(Fragment.instantiate(this,PageBDDFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this,PageVmwareFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this,PageVeeamBRFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this,PageBestRealFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this,PageSms.class.getName()));
 
 		// Création de l'adapter qui s'occupera de l'affichage de la liste de
@@ -98,8 +99,9 @@ public class FragmentsSliderActivity extends FragmentActivity {
 
 		Log.d("Pascal Log", "Appui Envoyer sms" );
 		
-		EditText te = (EditText) findViewById(R.id.message);
-		mess = te.getText().toString();
+		/*EditText te = (EditText) findViewById(R.id.message);
+		mess = te.getText().toString();*/
+		mess="";
 		EditText ph = (EditText) findViewById(R.id.phonenumber);
 		tel = ph.getText().toString();
 		
@@ -110,8 +112,11 @@ public class FragmentsSliderActivity extends FragmentActivity {
 		// extra fields for number and message respectively
 		smsVIntent.putExtra("address", tel );
 		smsVIntent.putExtra("sms_body", mess );
+
 		try{
 			startActivity(smsVIntent);
+			pager2.arrowScroll(View.FOCUS_LEFT);
+			//pager2.getScrollX();
 		} catch (Exception ex) {
 			Toast.makeText( this, "Votre sms a des erreurs...",
 					Toast.LENGTH_LONG).show();

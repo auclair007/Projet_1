@@ -12,8 +12,8 @@
     <string name="mail">pa.auclair@gmail.com</string>
     <string name="next">></string>
     <string name="EntrerNumeroTel">Numéro de Téléphone</string>
-    <string name="EnvoyerleSms">Envoyer le Sms</string>
-    <string name="newsms">taper votre sms</string>
+    <string name="EnvoyerleSms">Envoyer un Sms</string>
+    <string name="newsms">Ceci est mon numéro de téléphone</string>
     <string name="phonenumber">phonenumber</string>
     <string name="message">message</string>
     <string name="pays">France</string>

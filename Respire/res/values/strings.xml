@@ -1,0 +1,32 @@
+<resources>
+
+    <string name="app_name" translatable="false">Respire !!!</string>
+    <string name="apropos" translatable="false">A propos</string>
+    <string name="coucou" translatable="false">coucou</string>
+    <string name="page_1_1" translatable="false">page_1_1</string>
+    <string name="page_2_1" translatable="false">page_2_1</string>
+    <string name="page_3_1" translatable="false">page_3_1</string>
+    <string name="page_4_1" translatable="false">page_4_1</string>
+    <string name="delay" translatable="false">Delay sec</string>
+    <string name="timer" translatable="false">Timer mn</string>
+    <string name="inhale" translatable="false">Inhale sec</string>
+    <string name="holdup" translatable="false">Hold Up sec</string>
+    <string name="holddown" translatable="false">Hold Down sec</string>
+    <string name="exhale" translatable="false">Exhale sec</string>
+    <string name="start" translatable="false">Start</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="stop"  translatable="false">Stop</string>    
+    <string name="Quitter"  translatable="false">Quitter</string>
+    <string name="Choix_Image"  translatable="false">Choix Image</string>
+    <string name="Musique"  translatable="false">Musique</string>
+    <string name="BP_Musique"  translatable="false">Musique</string>
+    <string name="prenom"  translatable="false">Pascal</string>
+    <string name="nom"  translatable="false">AUCLAIR</string>
+    <string name="mail"  translatable="false">pa.auclair@gmail.com</string>
+    <string name="powered"  translatable="false">Powered by Eclipse Kepler</string>
+    <string name="txt_choix_image"  translatable="false">Toucher l\'image</string>
+    <string name="image_1"  translatable="false">Image 1</string>
+    <string name="image_2"  translatable="false">Image 2</string>
+    <string name="image_3"  translatable="false">Image 3</string>
+    <string name="portrait"  translatable="false">portrait</string>    
+</resources>
